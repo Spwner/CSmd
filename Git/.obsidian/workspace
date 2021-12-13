@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Basics.md",
+            "file": "Branching.md",
             "mode": "source"
           }
         }
@@ -20,7 +20,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Basics.md",
+            "file": "Branching.md",
             "mode": "preview"
           }
         }
@@ -79,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Basics.md",
+                "file": "Branching.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,8 +97,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "c3d61ea616217635",
+  "active": "243039a0a0eed9fc",
   "lastOpenFiles": [
+    "Branching.md",
     "Basics.md",
     "README.md"
   ]
