@@ -1,0 +1,1 @@
+linda, perfeita e maravilhosa
