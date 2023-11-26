@@ -1,1 +1,4 @@
-*.pdf
+*.exe
+*.o
+.vscode/
+.stash/
