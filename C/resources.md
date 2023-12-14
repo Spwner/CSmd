@@ -22,8 +22,12 @@ on to the sort of enlightened bliss that can only be obtained through pure C pro
 ## Articles
 ### [Everything I wish I knew when learning C](https://tmewett.com/c-tips/)
 "This page is a living collection of summaries, signposts, and advice for these broader points that made my journey with C and other compiled languages easier."
+### [A beginners' guide away from scanf()](https://sekrit.de/webdocs/c/beginners-guide-away-from-scanf.html)
+"This document is for you if you started to learn programmming in C. Chances are you follow a course and the method to read some input you were taught is to use the scanf() function."
 ### [The Development of the C Language](https://www.bell-labs.com/usr/dmr/www/chist.html)
 "This paper is about the development of the C programming language, the influences on it, and the conditions under which it was created."
+### [keeping simple](https://www.yodaiken.com/tag/c/)
+big hater energy
 
 ## Q&As
 ### [C FAQ](http://www.c-faq.com/)

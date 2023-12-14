@@ -1,0 +1,5 @@
+### [Stack Overflow Documentation Dump](https://goalkicker.com/)
+### [Stanford CS Education Library](http://cslibrary.stanford.edu/)
+### [LearnX](https://www.learn-c.org/)
+### [Learn Anything](https://learn-anything.xyz/)
+### [Rosetta Code](https://rosettacode.org/wiki/Help:Similar_Sites)
