@@ -32,6 +32,9 @@ by Marc Gregoire.
 ### [LearnCpp.com](https://www.learncpp.com/)
 ### [cplusplus.com](https://cplusplus.com/doc/tutorial/)
 ### [Modern C++ Tutorial](https://changkun.de/modern-cpp/)
+### [C++ Annotations](https://fbb-git.gitlab.io/cppannotations/)
+### [Cprogramming](https://www.cprogramming.com/)
+### [Modern C++ Programming](https://github.com/federico-busato/Modern-CPP-Programming)
 
 ## Articles
 

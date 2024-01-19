@@ -6,3 +6,7 @@
 ### [Rosetta Code](https://rosettacode.org/wiki/Help:Similar_Sites)
 ### [Common Lisp Semantics](http://metamodular.com/common-lisp-semantics.html#fn1)
 ### [GCC online documentation](https://gcc.gnu.org/onlinedocs/)
+### [Quick Reference](https://quickref.me/)
+### [DevDocs](https://devdocs.io/)
+### [Programming from the Ground Up](https://savannah.nongnu.org/projects/pgubook/)
+### [Words and Buttons Online](https://wordsandbuttons.online/index.html)
