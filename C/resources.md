@@ -27,10 +27,14 @@ by Felix Palmen.
 by Dennis M. Ritchie.
 ### [keeping simple](https://www.yodaiken.com/tag/c/)
 by Victor Yodaiken.
+### [The seebs C Page](https://www.seebs.net/c/)
+### [Spinoza's Blog](https://spinoza1111.wordpress.com/tag/c-programming-language/)
+### [Lysator Collection](https://www.lysator.liu.se/c/)
 
 ## Q&As
 ### [C FAQ](http://www.c-faq.com/)
 by Steve Summit.
+### [clc wiki](https://clc-wiki.net/wiki/Main_Page)
 ### ['c' tag info page](https://stackoverflow.com/tags/c/info)
 by Stack Overflow.
 

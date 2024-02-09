@@ -1,0 +1,7 @@
+### [O QUE É GIT E GITHUB?](https://www.youtube.com/watch?v=DqTITcMq68k)
+### [Tutorial de Git e GitHub para Iniciantes](https://terminalroot.com.br/git/)
+### [Git e GitHub para iniciantes – Tutorial completo](https://fullcycle.com.br/git-e-github/)
+### [Git for Beginners: Zero to Hero](https://jdsalaro.com/tutorial/git/index.html)
+### [Git Docs](https://git-scm.com/doc)
+### [GitHub Docs](https://docs.github.com/)
+### [gitignore.io](https://www.gitignore.io/)

@@ -1,0 +1,8 @@
+### [Old K&R Site](https://s3-us-west-2.amazonaws.com/belllabs-microsite-dritchie/cbook/index.html)
+### [New K&R Site](https://www.cs.princeton.edu/~bwk/cbook.html)
+### [Learn To Solve It](https://www.learntosolveit.com/)
+### [K&R2 Solutions](https://clc-wiki.net/wiki/K&R2_solutions)
+### [Summit's K&R Notes](https://www.eskimo.com/~scs/cclass/krnotes/top.html)
+### [Brian on Computerphile](https://youtube.com/playlist?list=PLzH6n4zXuckqZ90zLyy36qjO5YIn1RulG&si=bLGYbamJYKeLuc0T)
+### [Brian Kernighan's Home Page](https://www.cs.princeton.edu/~bwk/)
+### [Ritchie's Home Page](https://www.bell-labs.com/usr/dmr/www/)
