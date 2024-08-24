@@ -1,4 +1,5 @@
+*.bak
 *.exe
 *.o
 .vscode/
-.random/
+.temp/

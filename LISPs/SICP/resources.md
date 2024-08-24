@@ -1,6 +1,8 @@
 ### [Interactive SICP](https://xuanji.appspot.com/isicp/)
 ### [Free LATEX Version Repository](https://github.com/sarabander/sicp-pdf)
+
 ### [OpenCourseWare SICP Lectures](https://www.youtube.com/playlist?list=PLE18841CABEA24090)
+
 ### [2019 SICP MIT Class Website](https://web.mit.edu/6.001/6.037/)
 ### [SICP Study Website](https://mk12.github.io/sicp/)
 ### [SICP Solutions](http://community.schemewiki.org/?SICP-Solutions)
