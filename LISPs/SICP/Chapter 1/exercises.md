@@ -83,7 +83,7 @@ When we wish to find the square root of a very small number, `good-enough?` will
 ```scheme
 > (sqrt 1e-18)  ;; actual value: 1e-9
 0.03125000000000001
-> (good-enough? 0.03125 1e-18)  ;; should reasonably not be...
+> (good-enough? 0.03125 1e-18)  ;; should not be good
 #t
 ```
 
@@ -91,6 +91,19 @@ In the case of very large numbers, `good-enough?` will often never be satisfied 
 
 ```scheme
 > (sqrt 1e13)  ;; interpreter hangs
-> (good-enough? 3162277.66017 1e13)  ;; should reasonably be...
+> (good-enough? 3162277.66017 1e13)  ;; should be good
 #f
 ```
+
+The altered version of the procedure does work better for numbers big and small. See [sqrt-iter](sqrt-iter.rkt).
+
+ ```scheme
+ > (sqrt 1e-18)
+ 1.0000000000000023e-9
+ > (sqrt 1e13)
+ 3162277.6640104805
+ ```
+
+### Exercise 1.8
+
+See [cbrt-iter](cbrt-iter.rkt).

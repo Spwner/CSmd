@@ -1,11 +1,13 @@
 #lang sicp
 
+;; Exercise 1.7
+
 (define (square x) (* x x))
 
-(define (sqrt-iter guess x)
-  (if (good-enough? guess x)
+(define (sqrt-iter prev-guess guess x)
+  (if (good-enough? prev-guess guess)
       guess
-      (sqrt-iter (improve guess x) x)))
+      (sqrt-iter guess (improve guess x) x)))
 
 (define (improve guess x)
   (average guess (/ x guess)))
@@ -13,8 +15,11 @@
 (define (average x y)
   (/ (+ x y) 2))
 
-(define (good-enough? guess x)
-  (< (abs (- (square guess) x)) 0.001))
+(define (delta-close? x y delta)
+  (< (abs (- x y)) delta))
+
+(define (good-enough? prev-guess guess)
+  (delta-close? 1.0 (/ prev-guess guess) 1e-4))
 
 (define (sqrt x)
-  (sqrt-iter 1.0 x))
+  (sqrt-iter 0.0 1.0 x))
