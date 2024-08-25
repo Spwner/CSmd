@@ -47,6 +47,8 @@
 
 ### Exercise 1.3
 
+Version 1:
+
 ```scheme
 (define (least-of-two a b)
   (if (< a b) a b))
@@ -59,6 +61,22 @@
 
 (define (exercise a b c)
   (- (sum-of-three-squares a b c) (square (least-of-three a b c))))
+```
+
+Version 2:
+
+```scheme
+(define (square x) (* x x))
+(define (sum-of-squares a b)
+  (+ (square a) (square b)))
+
+(define (greater-of a b)
+  (if (> a b) a b))
+
+(define (exercise a b c)
+  (if (> a b)
+      (sum-of-squares a (greater-of b c))
+      (sum-of-squares b (greater-of a c))))
 ```
 
 ### Exercise 1.4
