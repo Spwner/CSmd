@@ -2,8 +2,6 @@
 
 ;; Exercise 1.7
 
-(define (square x) (* x x))
-
 (define (sqrt-iter prev-guess guess x)
   (if (good-enough? prev-guess guess)
       guess

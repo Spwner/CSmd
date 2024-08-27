@@ -1,6 +1,6 @@
 # Chapter 1
 
-## Round 1
+## Section 1.1
 
 ### Exercise 1.1
 
@@ -88,8 +88,6 @@ This procedure takes the value of an `if` expression (in this case, either `+` o
 In the former case, Ben will observe that the REPL seemingly freezes, as the interpreter enters an infinite loop while trying to evaluate the operand `(p)` in the expression provided.\
 In the latter case, Ben will observe that the REPL responds with `0`, since the evaluation of `(p)` is postponed to the `if` expression, where it ends up being skipped all together.
 
-## Round 2
-
 ### Exercise 1.6
 
 When Alyssa attempts to use `sqrt`, she will notice that the REPL freezes, as it did in Ben's experiment. This happens because, unlike in the case of `if`, an expression using `new-if` as an operator will have all of it's operands evaluated eagerly, which entails calling `sqrt-iter` recursively.
@@ -125,3 +123,73 @@ The altered version of the procedure does work better for numbers big and small.
 ### Exercise 1.8
 
 See [cbrt-iter](cbrt-iter.rkt).
+
+## Section 1.2
+
+### Exercise 1.9
+
+The first process is recursive:
+
+```scheme
+(+ 4 5)
+(inc (+ 3 5))
+(inc (inc (+ 2 5)))
+(inc (inc (inc (+ 1 5))))
+(inc (inc (inc (inc (+ 0 5)))))
+(inc (inc (inc (inc 5))))
+(inc (inc (inc 6)))
+(inc (inc 7))
+(inc 8)
+9
+```
+
+The second is iterative:
+
+```scheme
+(+ 4 5)
+(+ 3 6)
+(+ 2 7)
+(+ 1 8)
+(+ 0 9)
+9
+```
+
+### Exercise 1.10
+
+```scheme
+> (A 1 10)
+1024
+> (A 2 4)
+65536
+> (A 3 3)
+65536
+```
+
+$f(n) \vcentcolon= A(0,n) = \left\{\begin{array}{lr}
+    0, & \text{for } n = 0\\
+    2n, & \text{otherwise}
+  \end{array}\right\} = 2n$\
+$g(n) \vcentcolon= A(1,n) = \left\{\begin{array}{lr}
+    0, & \text{for } n = 0\\
+    2, & \text{for } n = 1\\
+    A(0,A(1,n-1)), & \text{otherwise}
+  \end{array}\right\} = \left\{\begin{array}{lr}
+    0, & \text{for } n = 0\\
+    2, & \text{for } n = 1\\
+    f(g(n-1)), & \text{otherwise}
+  \end{array}\right\} = \begin{cases}
+    0, & \text{for } n = 0\\
+    2^n, & \text{otherwise}
+  \end{cases}$\
+$h(n) \vcentcolon= A(2,n) = \left\{\begin{array}{lr}
+    0, & \text{for } n = 0\\
+    2, & \text{for } n = 1\\
+    A(1,A(2,n-1)), & \text{otherwise}
+  \end{array}\right\} = \left\{\begin{array}{lr}
+    0, & \text{for } n = 0\\
+    2, & \text{for } n = 1\\
+    g(h(n-1)), & \text{otherwise}
+  \end{array}\right\} = \begin{cases}
+    0, & \text{for } n = 0\\
+    \underbrace{2^{2^{\cdotp^{\cdotp^{\cdotp^2}}}}}_n, & \text{otherwise}
+  \end{cases}$
