@@ -165,31 +165,87 @@ The second is iterative:
 65536
 ```
 
-$f(n) \vcentcolon= A(0,n) = \left\{\begin{array}{lr}
-    0, & \text{for } n = 0\\
-    2n, & \text{otherwise}
+$f(n) \vcentcolon= A(0,n) = \left\{\begin{array}{ll}
+    0 & \text{for } n = 0 \text{,}\\
+    2n & \text{otherwise.}
   \end{array}\right\} = 2n$\
-$g(n) \vcentcolon= A(1,n) = \left\{\begin{array}{lr}
-    0, & \text{for } n = 0\\
-    2, & \text{for } n = 1\\
-    A(0,A(1,n-1)), & \text{otherwise}
-  \end{array}\right\} = \left\{\begin{array}{lr}
-    0, & \text{for } n = 0\\
-    2, & \text{for } n = 1\\
-    f(g(n-1)), & \text{otherwise}
+$g(n) \vcentcolon= A(1,n) = \left\{\begin{array}{ll}
+    0 & \text{for } n = 0 \text{,}\\
+    2 & \text{for } n = 1 \text{,}\\
+    A(0,A(1,n-1)) & \text{otherwise.}
+  \end{array}\right\} = \left\{\begin{array}{ll}
+    0 & \text{for } n = 0 \text{,}\\
+    2 & \text{for } n = 1 \text{,}\\
+    f(g(n-1)) & \text{otherwise.}
   \end{array}\right\} = \begin{cases}
-    0, & \text{for } n = 0\\
-    2^n, & \text{otherwise}
+    0 & \text{for } n = 0 \text{,}\\
+    2^n & \text{otherwise.}
   \end{cases}$\
-$h(n) \vcentcolon= A(2,n) = \left\{\begin{array}{lr}
-    0, & \text{for } n = 0\\
-    2, & \text{for } n = 1\\
-    A(1,A(2,n-1)), & \text{otherwise}
-  \end{array}\right\} = \left\{\begin{array}{lr}
-    0, & \text{for } n = 0\\
-    2, & \text{for } n = 1\\
-    g(h(n-1)), & \text{otherwise}
+$h(n) \vcentcolon= A(2,n) = \left\{\begin{array}{ll}
+    0 & \text{for } n = 0 \text{,}\\
+    2 & \text{for } n = 1 \text{,}\\
+    A(1,A(2,n-1)) & \text{otherwise.}
+  \end{array}\right\} = \left\{\begin{array}{ll}
+    0 & \text{for } n = 0 \text{,}\\
+    2 & \text{for } n = 1 \text{,}\\
+    g(h(n-1)) & \text{otherwise.}
   \end{array}\right\} = \begin{cases}
-    0, & \text{for } n = 0\\
-    \underbrace{2^{2^{\cdotp^{\cdotp^{\cdotp^2}}}}}_n, & \text{otherwise}
+    0 & \text{for } n = 0 \text{,}\\
+    \underbrace{2^{2^{\cdotp^{\cdotp^{\cdotp^2}}}}}_n & \text{otherwise.}
   \end{cases}$
+
+### Exercise 1.11
+
+Recursise version:
+
+```scheme
+(define (f n) 
+  (if (< n 3)
+      n
+      (+ (f (- n 1)) (* 2 (f (- n 2))) (* 3 (f (- n 3))))))
+```
+
+Iterative version:
+
+```scheme
+(define (f n)
+  (define (f-iter a b c count)
+    (if (= count 0)
+        a
+        (f-iter b
+                c
+                (+ (* 3 a) (* 2 b) c)
+                (dec count))))
+  (f-iter 0 1 2 n))
+```
+
+### Exercise 1.12
+
+```scheme
+(define (pascal row column)
+  (cond ((= column 0) 1)
+        ((= row 0) 0)
+        ((> column row) 0)  ;; Not strictly necessary, but speeds things up
+        (else (+ (pascal (- row 1) column) (pascal (- row 1) (- column 1))))))
+```
+
+### Exercise 1.13
+
+Let $\phi = (1+\sqrt{5})/2$ and $\psi = (1-\sqrt{5})/2$.\
+First, we prove that $\text{Fib}(n) = (\phi^n - \psi^n)/\sqrt{5}$ for all $n > 0$.\
+Second, we show this formula is equivalent to $\text{round}(\phi^n/\sqrt{5})$, completing the proof.
+
+**Part 1:** By induction.\
+In the base case, we have $\text{Fib}(0) = (\phi^0-\psi^0)/\sqrt{5} = 0/\sqrt{5} = 0$ and $\text{Fib}(1) = (\phi^1-\psi^1)/\sqrt{5} = \sqrt{5}/\sqrt{5} = 1$, as desired.\
+Assume $\text{Fib}(m) = (\phi^m-\psi^m)/\sqrt{5}$ for all $m \leq n$, so that we must prove $\text{Fib}(n+1) = (\phi^{n+1}-\psi^{n+1})/\sqrt{5}$.
+
+```math
+\begin{align}
+  \text{Fib}(n+1) &= \text{Fib}(n)+\text{Fib}(n-1)\\
+  &= \text{Fib}(n)+\text{Fib}(n-1)\\
+  &= (\phi^n-\psi^n)/\sqrt{5} + (\phi^{n-1}-\psi^{n-1})/\sqrt{5}
+\end{align}
+
+```
+
+Notice that $\phi+\psi = 1$ and that $|\psi^n| < 0.5$ for $n > 1$, such that $round()$
