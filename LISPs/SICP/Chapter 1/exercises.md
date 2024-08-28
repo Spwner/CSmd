@@ -259,3 +259,43 @@ Since $|-\psi^n/\sqrt{5}| = |\psi|^n/\sqrt{5}$, we need only that $|\psi|^n < \s
 $\blacksquare$
 
 ### Exercise 1.14
+
+### Exercise 1.15
+
+**a.** Exactly 5 times, as revealed by the test:
+
+```scheme
+(define (sine-count angle count) 
+  (if (not (> (abs angle) 0.1))
+      count
+      (sine-count (/ angle 3.0) (inc count))))
+(sine-count 12.5 0)
+```
+
+**b.** The order of growth of this process is $\Theta(\log a)$ in both space and number of steps. More precisely, we have that $R(a) = \lceil \log_3 a - \log_3 0.1 \rceil$ is the resource function in both cases.
+
+### Exercises 1.16
+
+### Exercises 1.17
+
+### Exercises 1.18
+
+### Exercises 1.19
+
+### Exercises 1.20
+
+### Exercises 1.21
+
+### Exercises 1.22
+
+### Exercises 1.23
+
+### Exercises 1.24
+
+### Exercises 1.25
+
+### Exercises 1.26
+
+### Exercises 1.27
+
+### Exercises 1.28
