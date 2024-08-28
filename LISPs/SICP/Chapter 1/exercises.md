@@ -231,21 +231,31 @@ Iterative version:
 
 ### Exercise 1.13
 
-Let $\phi = (1+\sqrt{5})/2$ and $\psi = (1-\sqrt{5})/2$.\
-First, we prove that $\text{Fib}(n) = (\phi^n - \psi^n)/\sqrt{5}$ for all $n > 0$.\
-Second, we show this formula is equivalent to $\text{round}(\phi^n/\sqrt{5})$, completing the proof.
+Let $\phi = (1+\sqrt{5})/2$ and $\psi = (1-\sqrt{5})/2$, i.e. the pair of real solutions to $1 = 1/x + 1/x^2$. As a consequence, $\phi$ and $\psi$ are also solutions of all equations of the form $x^n = x^{n-1}+x^{n-2}$.\
+In order to prove $\text{Fib}(n) = \text{round}(\phi^n/\sqrt{5})$ we will proceed in two major steps. First, we prove that $\text{Fib}(n) = (\phi^n-\psi^n)/\sqrt{5}$ by induction; then, we show this formula is equivalent to $\text{round}(\phi^n/\sqrt{5})$, completing the proof.
 
-**Part 1:** By induction.\
-In the base case, we have $\text{Fib}(0) = (\phi^0-\psi^0)/\sqrt{5} = 0/\sqrt{5} = 0$ and $\text{Fib}(1) = (\phi^1-\psi^1)/\sqrt{5} = \sqrt{5}/\sqrt{5} = 1$, as desired.\
-Assume $\text{Fib}(m) = (\phi^m-\psi^m)/\sqrt{5}$ for all $m \leq n$, so that we must prove $\text{Fib}(n+1) = (\phi^{n+1}-\psi^{n+1})/\sqrt{5}$.
+**1st part:**\
+The base case is stablished as follows:\
+$\text{Fib}(0) = (\phi^0-\psi^0)/\sqrt{5} = 0/\sqrt{5} = 0$ and\
+$\text{Fib}(1) = (\phi^1-\psi^1)/\sqrt{5} = \sqrt{5}/\sqrt{5} = 1$.\
+Then, assuming $\text{Fib}(m) = (\phi^m-\psi^m)/\sqrt{5}$ for all $m < n$:
 
 ```math
 \begin{align}
-  \text{Fib}(n+1) &= \text{Fib}(n)+\text{Fib}(n-1)\\
-  &= \text{Fib}(n)+\text{Fib}(n-1)\\
-  &= (\phi^n-\psi^n)/\sqrt{5} + (\phi^{n-1}-\psi^{n-1})/\sqrt{5}
+  \text{Fib}(n) &= \text{Fib}(n-1)+\text{Fib}(n-2) & \text{By definition.}\\
+  &= (\phi^{n-1}-\psi^{n-1})/\sqrt{5} + (\phi^{n-2}-\psi^{n-2})/\sqrt{5} & \text{Apply hypothesis.}\\
+  &= (\phi^{n-1}+\phi^{n-2}-(\psi^{n-1}+\psi^{n-2}))/\sqrt{5} & \text{Factor and regroup.}\\
+  &= (\phi^n-\psi^n)/\sqrt{5} & \text{Properties of } \phi \text{ and } \psi \text{.}
 \end{align}
-
 ```
 
-Notice that $\phi+\psi = 1$ and that $|\psi^n| < 0.5$ for $n > 1$, such that $round()$
+as desired.
+
+**2nd part:**\
+Notice that $\text{round}(x+\epsilon) = \text{round}(x)$ as long as $|\epsilon| < 0.5$, and also that $\text{Fib}(n) = \text{round}(\text{Fib}(n)) = \text{round}(\phi^n/\sqrt{5}-\psi^n/\sqrt{5})$, as proved above.\
+Therefore, $\text{Fib}(n) = \text{round}(\phi^n/\sqrt{5})$ as long as $|-\psi^n/\sqrt{5}| < 0.5$.\
+Since $|-\psi^n/\sqrt{5}| = |\psi|^n/\sqrt{5}$, we need only that $|\psi|^n < \sqrt{5}/2$, but $|\psi| < 1$, and so the proof is complete.
+
+$\blacksquare$
+
+### Exercise 1.14
