@@ -307,6 +307,18 @@ $\blacksquare$
 
 ### Exercises 1.19
 
+```math
+\begin{align}
+  T^2_{pq}(a,b) &= T_{pq}(bq+aq+ap,bp+aq)\\
+  &= (bpq+aq^2+bq^2+aq^2+apq+bpq+apq+ap^2,bp^2+apq+bq^2+aq^2+apq)\\
+  &= (b(pq+q^2+pq)+a(q^2+pq+pq)+a(q^2+p^2),b(p^2+q^2)+a(pq+q^2+pq))\\
+  &= T_{(p^2+q^2)(q^2+2pq)}(a,b)
+\end{align}
+```
+
+That is, $p' = p^2+q^2$ and $q' = q^2+2pq$.\
+See [fast-fib](fast-fib.rkt).
+
 ### Exercises 1.20
 
 ### Exercises 1.21
