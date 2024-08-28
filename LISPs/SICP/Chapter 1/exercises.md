@@ -276,9 +276,34 @@ $\blacksquare$
 
 ### Exercises 1.16
 
+```scheme
+(define (fast-expt b n)
+  (define (expt-iter b n a)
+    (cond ((= n 0) a)
+          ((even? n) (expt-iter (square b) (/ n 2) a))
+          (else (expt-iter b (- n 1) (* a b)))))
+  (expt-iter b n 1))
+```
+
 ### Exercises 1.17
 
+```scheme
+(define (fast-mult a b)
+  (cond ((= b 0) 0)
+        ((even? b) (double (fast-mult a (halve b))))
+        (else (+ a (fast-mult a (- b 1))))))
+```
+
 ### Exercises 1.18
+
+```scheme
+(define (fast-mult a b)
+  (define (mult-iter a b c)
+    (cond ((= b 0) c)
+          ((even? b) (mult-iter (double a) (halve b) c))
+          (else (mult-iter a (- b 1) (+ c a)))))
+  (mult-iter a b 0))
+```
 
 ### Exercises 1.19
 
