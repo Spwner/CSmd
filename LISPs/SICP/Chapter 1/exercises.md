@@ -321,6 +321,50 @@ See [fast-fib](fast-fib.rkt).
 
 ### Exercises 1.20
 
+Normal-order evaluation:
+
+```scheme
+(gcd 206 40)
+(gcd 40 (remainder 206 40))
+;(remainder 206 40)
+(gcd (remainder 206 40)
+     (remainder 40 (remainder 206 40)))
+;(remainder 40 (remainder 206 40))
+(gcd (remainder 40 (remainder 206 40))
+     (remainder (remainder 206 40)
+                (remainder 40 (remainder 206 40))))
+;(remainder (remainder 206 40)
+;           (remainder 40 (remainder 206 40)))
+(gcd (remainder (remainder 206 40)
+                (remainder 40 (remainder 206 40)))
+     (remainder (remainder 40 (remainder 206 40))
+                (remainder (remainder 206 40)
+                           (remainder 40 (remainder 206 40)))))
+;(remainder (remainder 40 (remainder 206 40))
+;           (remainder (remainder 206 40)
+;                      (remainder 40 (remainder 206 40))))
+(remainder (remainder 206 40)                
+           (remainder 40 (remainder 206 40)))
+
+;; 18 remainders performed
+```
+
+Applicative-order evaluation:
+
+```scheme
+(gcd 206 40)
+;(remainder 206 40)
+(gcd 40 6)
+;(remainder 40 6)
+(gcd 6 4)
+;(remainder 6 4)
+(gcd 4 2)
+;(remainder 4 2)
+(gcd 2 0)
+
+;; 4 remainders performed
+```
+
 ### Exercises 1.21
 
 ### Exercises 1.22
