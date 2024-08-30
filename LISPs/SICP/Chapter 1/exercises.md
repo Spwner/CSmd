@@ -260,6 +260,89 @@ $\blacksquare$
 
 ### Exercise 1.14
 
+Draw the tree illustrating the process gen-
+erated by the count-change procedure of Section 1.2.2 in
+making change for 11 cents. What are the orders of growth
+of the space and number of steps used by this process as
+the amount to be changed increases?
+
+```scheme
+(count-change 11)
+(cc 11 5)
+  (cc 11 4)
+  | (cc 11 3)
+  | | (cc 11 2)
+  | | | (cc 11 1)
+  | | | | (cc 11 0)  ;; 0
+  | | | | (cc 10 1)
+  | | | |   (cc 10 0)  ;; 0
+  | | | |   (cc 9 1)
+  | | | |     (cc 9 0)  ;; 0
+  | | | |     (cc 8 1)
+  | | | |       (cc 8 0)  ;; 0
+  | | | |       (cc 7 1)
+  | | | |         (cc 7 0)  ;; 0
+  | | | |         (cc 6 1)
+  | | | |           (cc 6 0)  ;; 0
+  | | | |           (cc 5 1)
+  | | | |             (cc 5 0)  ;; 0
+  | | | |             (cc 4 1)
+  | | | |               (cc 4 0)  ;; 0
+  | | | |               (cc 3 1)
+  | | | |                 (cc 3 0)  ;; 0
+  | | | |                 (cc 2 1)
+  | | | |                   (cc 2 0)  ;; 0
+  | | | |                   (cc 1 1)
+  | | | |                     (cc 1 0)  ;; 0
+  | | | |                     (cc 0 1)  ;; 1
+  | | | (cc 6 2)
+  | | |   (cc 6 1)
+  | | |   | (cc 6 0)  ;; 0
+  | | |   | (cc 5 1)
+  | | |   |   (cc 5 0)  ;; 0
+  | | |   |   (cc 4 1)
+  | | |   |     (cc 4 0)  ;; 0
+  | | |   |     (cc 3 1)
+  | | |   |       (cc 3 0)  ;; 0
+  | | |   |       (cc 2 1)
+  | | |   |         (cc 2 0)  ;; 0
+  | | |   |         (cc 1 1)
+  | | |   |           (cc 1 0)  ;; 0
+  | | |   |           (cc 0 1)  ;; 1
+  | | |   (cc 1 2)
+  | | |     (cc 1 1)
+  | | |     | (cc 1 0)  ;; 0
+  | | |     | (cc 0 1)  ;; 1
+  | | |     (cc -4 2)  ;; 0
+  | | (cc 1 3)
+  | |   (cc 1 2)
+  | |   | (cc 1 1)
+  | |   | | (cc 1 0)  ;; 0
+  | |   | | (cc 0 1)  ;; 1
+  | |   | (cc -4 2)  ;; 0
+  | |   (cc -9 3)  ;; 0
+  | (cc -14 4) ;; 0
+  (cc -39 5)  ;; 0
+```
+
+The order of growth of the space used by a process is proportional to the depth of it's tree. In this case, the tree grows as deep as $\text{amount}+5$ (corresponding to the case where only pennies are used), that is, it grows in $\Theta(\text{amount})$.\
+The order of growth of the number of the steps used by a process is proportional to the number of nodes in it's tree. The exact value is hard to pin down in this case, but...\
+Let $R(a,k)$ be the number of calls to `cc` invoqued by evaluating `(cc a k)` with $a$ in for `a` and $k$ in for `k`.\
+Notice that $R(a, 1) = 2a+1 = \Theta(a)$ and that $R(a, 2) = 1+\lceil a/5 \rceil+\Sigma_{i=0}^{\lceil a/5 \rceil}R(a-5i,1)$. That is, $R(a,2) = \Theta(a^2)$, since we're adding a number of $\Theta(a)$ terms proportional to $a$.\
+In general, if $d(k)$ is the denomination of a coin of kind $k$, then $R(a,k) = 1+\lceil a/d(k) \rceil+\Sigma_{i=0}^{\lceil a/d(k) \rceil}R(a-d(k)i,k-1)$; so that $R(a,k)$ is $\Theta(a^k)$, by induction, as argued above.\
+This suggests `count-change` is $\Theta(\text{amount}^5)$ in the number of steps.
+
+```scheme
+(cc 'a 2)         ;; 0
+  (cc 'a 1)       ;; R(a,1)
+  (cc 'a-5 2)     ;; 1
+    (cc 'a-5 1)   ;; R(a-5,1)
+    (cc 'a-10 2)  ;; 2
+      ...         ;; ...
+        (cc 5 1)  ;; R(5,1)
+        (cc 0 2)  ;; a/5
+```
+
 ### Exercise 1.15
 
 **a.** Exactly 5 times, as revealed by the test:
