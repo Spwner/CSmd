@@ -328,8 +328,8 @@ the amount to be changed increases?
 The order of growth of the space used by a process is proportional to the depth of it's tree. In this case, the tree grows as deep as $\text{amount}+5$ (corresponding to the case where only pennies are used), that is, it grows in $\Theta(\text{amount})$.\
 The order of growth of the number of the steps used by a process is proportional to the number of nodes in it's tree. The exact value is hard to pin down in this case, but...\
 Let $R(a,k)$ be the number of calls to `cc` invoqued by evaluating `(cc a k)` with $a$ in for `a` and $k$ in for `k`.\
-Notice that $R(a, 1) = 2a+1 = \Theta(a)$ and that $R(a, 2) = 1+\lceil a/5 \rceil+\Sigma_{i=0}^{\lceil a/5 \rceil}R(a-5i,1)$. That is, $R(a,2) = \Theta(a^2)$, since we're adding a number of $\Theta(a)$ terms proportional to $a$.\
-In general, if $d(k)$ is the denomination of a coin of kind $k$, then $R(a,k) = 1+\lceil a/d(k) \rceil+\Sigma_{i=0}^{\lceil a/d(k) \rceil}R(a-d(k)i,k-1)$; so that $R(a,k)$ is $\Theta(a^k)$, by induction, as argued above.\
+Notice that $R(a, 1) = 2a+1 = \Theta(a)$ and that $R(a, 2) = 1+\lceil a/5 \rceil+\sum_{i=0}^{\lceil a/5 \rceil-1}R(a-5i,1)$. That is, $R(a,2) = \Theta(a^2)$, since we're adding a number of $\Theta(a)$ terms proportional to $a$.\
+In general, if $d(k)$ is the denomination of a coin of kind $k$, then $R(a,k) = 1+\lceil a/d(k) \rceil+\sum_{i=0}^{\lceil a/d(k) \rceil-1}R(a-d(k)i,k-1)$; so that $R(a,k)$ is $\Theta(a^k)$, by induction, in accordance with sum.\
 This suggests `count-change` is $\Theta(\text{amount}^5)$ in the number of steps.
 
 ```scheme
@@ -450,7 +450,54 @@ Applicative-order evaluation:
 
 ### Exercises 1.21
 
+```scheme
+> (smallest-divisor 199)
+199
+> (smallest-divisor 1999)
+1999
+> (smallest-divisor 19999)
+7
+```
+
 ### Exercises 1.22
+
+```scheme
+> (search-for-primes 1000 1100)
+...
+1009 *** 2
+...
+1013 *** 2
+...
+1019 *** 2
+...
+> (search-for-primes 10000 10100)
+...
+10007 *** 3
+10009 *** 3
+...
+10037 *** 2
+...
+> (search-for-primes 100000 100100)
+100001
+100003 *** 5
+...
+100019 *** 5
+...
+100043 *** 5
+...
+> (search-for-primes 1000000 1000100)
+1000001
+1000003 *** 14
+...
+1000033 *** 14
+1000035
+1000037 *** 13
+...
+```
+
+The timing data does bear out the asymtotic predictions, although this only becomes clear at scales larger than the ones suggested (numbers over one million).\
+See [search-for-primes](search-for-primes.rkt). Here, it's clear that every 100 times increase in input correlates with an approximate 10 times increase in time reported per test.\
+This suggests that the time spent running a program is, indeed, proportional to the number of steps required for the computation, in my machine.
 
 ### Exercises 1.23
 
