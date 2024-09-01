@@ -461,47 +461,31 @@ Applicative-order evaluation:
 
 ### Exercises 1.22
 
-```scheme
-> (search-for-primes 1000 1100)
-...
-1009 *** 2
-...
-1013 *** 2
-...
-1019 *** 2
-...
-> (search-for-primes 10000 10100)
-...
-10007 *** 3
-10009 *** 3
-...
-10037 *** 2
-...
-> (search-for-primes 100000 100100)
-100001
-100003 *** 5
-...
-100019 *** 5
-...
-100043 *** 5
-...
-> (search-for-primes 1000000 1000100)
-1000001
-1000003 *** 14
-...
-1000033 *** 14
-1000035
-1000037 *** 13
-...
-```
-
-The timing data does bear out the asymtotic predictions, although this only becomes clear at scales larger than the ones suggested (numbers over one million).\
-See [search-for-primes](search-for-primes.rkt). Here, it's clear that every 100 times increase in input correlates with an approximate 10 times increase in time reported per test.\
+See [search-for-primes](search-for-primes.rkt).\
+The timing data does not bear out a $\sqrt{10}$ times increase going from 1'000 to 10'000, and it shows a two times increase going from 100'000 to 1'000'000. However, as the numbers get 10 times bigger, the growth ratio seems to approach the predicted value.\
 This suggests that the time spent running a program is, indeed, proportional to the number of steps required for the computation, in my machine.
 
 ### Exercises 1.23
 
+See [find-divisor](find-divisor.rkt).\
+The data does not confirm our expectations here, and it seems the ratio of the speeds of the different versions is closer to 3/2. This discrepancy can be explained by the added overhead of an equality check every iteration.\
+The following replacements provide the desired 2 times speed up.
+
+```scheme
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (+ test-divisor 2)))))
+(define (smallest-divisor n)
+  (if (divides? 2 n)
+      2
+      (find-divisor n 3)))
+```
+
 ### Exercises 1.24
+
+See [fast-prime](fast-prime.rkt).\
+We would expect the test times to grow linearly as the numbers increase exponentially, and this prediction is vindicated by the data.
 
 ### Exercises 1.25
 
