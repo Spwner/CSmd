@@ -501,3 +501,43 @@ By expanding the definition of `square` where they did, Louis garantees that `ex
 See [carmichael-test](carmichael-test.rkt).
 
 ### Exercises 1.28
+
+See [miller-rabin-test](miller-rabin-test.rkt).
+
+## Section 1.3
+
+### Exercise 1.29
+
+### Exercise 1.30
+
+### Exercise 1.31
+
+### Exercise 1.32
+
+### Exercise 1.33
+
+### Exercise 1.34
+
+### Exercise 1.35
+
+### Exercise 1.36
+
+### Exercise 1.37
+
+### Exercise 1.38
+
+### Exercise 1.39
+
+### Exercise 1.40
+
+### Exercise 1.41
+
+### Exercise 1.42
+
+### Exercise 1.43
+
+### Exercise 1.44
+
+### Exercise 1.45
+
+### Exercise 1.46

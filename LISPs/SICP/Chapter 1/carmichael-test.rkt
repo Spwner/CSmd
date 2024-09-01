@@ -15,11 +15,9 @@
         true
         (and (= (expmod m n n) m)
              (carmichael-loop (+ m 1)))))
-  (if (carmichael-loop 2)
-      (display "Carmichael confirmed.\n")
-      (display "Not carmichael.\n")))
+  (carmichael-loop 2))
 
-(carmichael-test 61)
+(carmichael-test 561)
 (carmichael-test 1105)
 (carmichael-test 1729)
 (carmichael-test 2465)
