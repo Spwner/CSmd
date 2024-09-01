@@ -489,8 +489,15 @@ We would expect the test times to grow linearly as the numbers increase exponent
 
 ### Exercises 1.25
 
+She is correct in a mathematical sense, but this procedure is inadequate for our purposes.\
+In prime testing large numbers, we would end up having to incur the performance costs of representing (and multiplying) much much larger numbers, when we could be taking remainders along the way very cheaply.
+
 ### Exercises 1.26
 
+By expanding the definition of `square` where they did, Louis garantees that `expmod` will call itself recursively twice whenever it would usually do it once. This change makes the number of nodes in the corresponding tree grow exponentially with it's depth, which is logarithmic with respect to the input, resulting in an overall $\Theta(n)$ order of growth in time.
+
 ### Exercises 1.27
+
+See [carmichael-test](carmichael-test.rkt).
 
 ### Exercises 1.28
