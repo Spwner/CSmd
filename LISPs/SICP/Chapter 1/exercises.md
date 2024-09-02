@@ -254,17 +254,9 @@ as desired.
 **2nd part:**\
 Notice that $\text{round}(x+\epsilon) = \text{round}(x)$ as long as $|\epsilon| < 0.5$, and also that $\text{Fib}(n) = \text{round}(\text{Fib}(n)) = \text{round}(\phi^n/\sqrt{5}-\psi^n/\sqrt{5})$, as proved above.\
 Therefore, $\text{Fib}(n) = \text{round}(\phi^n/\sqrt{5})$ as long as $|-\psi^n/\sqrt{5}| < 0.5$.\
-Since $|-\psi^n/\sqrt{5}| = |\psi|^n/\sqrt{5}$, we need only that $|\psi|^n < \sqrt{5}/2$, but $|\psi| < 1$, and so the proof is complete.
-
-$\blacksquare$
+Since $|-\psi^n/\sqrt{5}| = |\psi|^n/\sqrt{5}$, we need only that $|\psi|^n < \sqrt{5}/2$, but $|\psi| < 1$, and so the proof is complete. $\, \blacksquare$
 
 ### Exercise 1.14
-
-Draw the tree illustrating the process gen-
-erated by the count-change procedure of Section 1.2.2 in
-making change for 11 cents. What are the orders of growth
-of the space and number of steps used by this process as
-the amount to be changed increases?
 
 ```scheme
 (count-change 11)
@@ -328,8 +320,7 @@ the amount to be changed increases?
 The order of growth of the space used by a process is proportional to the depth of it's tree. In this case, the tree grows as deep as $\text{amount}+5$ (corresponding to the case where only pennies are used), that is, it grows in $\Theta(\text{amount})$.\
 The order of growth of the number of the steps used by a process is proportional to the number of nodes in it's tree. The exact value is hard to pin down in this case, but...\
 Let $R(a,k)$ be the number of calls to `cc` invoqued by evaluating `(cc a k)` with $a$ in for `a` and $k$ in for `k`.\
-Notice that $R(a, 1) = 2a+1 = \Theta(a)$ and that $R(a, 2) = 1+\lceil a/5 \rceil+\sum_{i=0}^{\lceil a/5 \rceil-1}R(a-5i,1)$. That is, $R(a,2) = \Theta(a^2)$, since we're adding a number of $\Theta(a)$ terms proportional to $a$.\
-In general, if $d(k)$ is the denomination of a coin of kind $k$, then $R(a,k) = 1+\lceil a/d(k) \rceil+\sum_{i=0}^{\lceil a/d(k) \rceil-1}R(a-d(k)i,k-1)$; so that $R(a,k)$ is $\Theta(a^k)$, by induction, in accordance with sum.\
+Notice that $R(a, 1) = 2a+1 = \Theta(a)$ and that $R(a, 2) = 1+\lceil a/5 \rceil+\sum_{i=0}^{\lceil a/5 \rceil-1}R(a-5i,1)$. That is, $R(a,2) = \Theta(a^2)$, since we're adding a number of $\Theta(a)$ terms proportional to $a$. In general, if $d(k)$ is the denomination of a coin of kind $k$, then $R(a,k) = 1+\lceil a/d(k) \rceil+\sum_{i=0}^{\lceil a/d(k) \rceil-1}R(a-d(k)i,k-1)$; so that $R(a,k)$ is $\Theta(a^k)$, by induction.\
 This suggests `count-change` is $\Theta(\text{amount}^5)$ in the number of steps.
 
 ```scheme
@@ -428,7 +419,7 @@ Normal-order evaluation:
 ;                      (remainder 40 (remainder 206 40))))
 (remainder (remainder 206 40)                
            (remainder 40 (remainder 206 40)))
-
+2
 ;; 18 remainders performed
 ```
 
@@ -444,7 +435,7 @@ Applicative-order evaluation:
 (gcd 4 2)
 ;(remainder 4 2)
 (gcd 2 0)
-
+2
 ;; 4 remainders performed
 ```
 

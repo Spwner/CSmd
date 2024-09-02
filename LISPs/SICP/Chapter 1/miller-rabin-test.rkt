@@ -10,8 +10,7 @@
   (define (zero-if-nontrivial x)
     (cond ((or (= x 1) (= x (- m 1))) 1)
           (else (zero-if-one (remainder (square x) m)))))
-  (cond ((or (= expo 0) (= base 1)) 1)
-        ((= base 0) 0)
+  (cond ((= expo 0) 1)
         ((even? expo) (zero-if-nontrivial (expmod-signal base (/ expo 2) m)))
         (else (remainder (* base (expmod-signal base (- expo 1) m)) m))))
 
