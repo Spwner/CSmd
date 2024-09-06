@@ -577,6 +577,15 @@ We can redefine `sum` and `product` as follows:
 
 ### Exercise 1.34
 
+```scheme
+> (f f)
+application: not a procedure;
+ expected a procedure that can be applied to arguments
+  given: 2
+```
+
+The interpreter raises an error, as we are asking it to evaluate `(2 2)` (from `(f 2)`) in spite of the fact that `2` is not a procedure.
+
 ### Exercise 1.35
 
 ### Exercise 1.36
