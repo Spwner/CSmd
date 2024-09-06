@@ -499,13 +499,81 @@ See [miller-rabin-test](miller-rabin-test.rkt).
 
 ### Exercise 1.29
 
+See [simp-integral](simp-integral.rkt).\
+With only 100 terms, this procedure gets us much closer to the actual answer than `integral`. It also seems like adding a lot more terms is actually counterproductive for the computation.
+
 ### Exercise 1.30
+
+```scheme
+(define (sum term a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (+ result (term a)))))
+  (iter a 0))
+```
 
 ### Exercise 1.31
 
+See [product](product.rkt).\
+Solution based on [Wallis Product](https://en.wikipedia.org/wiki/Wallis_product).
+
 ### Exercise 1.32
 
+Recursive version:
+
+```scheme
+(define (accumulate combiner null-value term a next b)
+  (if (> a b)
+      null-value
+      (combiner (term a)
+                (accumulate combiner null-value term (next a) next b))))
+```
+
+Iterative version:
+
+```scheme
+(define (accumulate combiner null-value term a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (combiner result (term a)))))
+  (iter a null-value))
+```
+
+We can redefine `sum` and `product` as follows:
+
+```scheme
+(define (sum term a next b) (accumulate + 0 term a next b))
+(define (product term a next b) (accumulate * 1 term a next b))
+```
+
 ### Exercise 1.33
+
+```scheme
+(define (filtered-accumulate predicate combiner null-value term a next b)
+  (define (iter a result)
+    (cond ((> a b) result)
+          ((predicate a) (iter (next a) (combiner result (term a))))
+          (else (iter (next a) result))))
+  (iter a null-value))
+```
+
+**a.**
+
+```scheme
+(define (sum-of-squares-of-primes a b)
+  (filtered-accumulate prime? + 0 identity a inc b))
+```
+
+**b.**
+
+```scheme
+(define (product-of-relative-primes n)
+  (define (relative-prime? i)
+    (= (gcd i n) 1))
+  (filtered-accumulate relative-prime? * 1 identity 2 inc (- n 1)))
+```
 
 ### Exercise 1.34
 
