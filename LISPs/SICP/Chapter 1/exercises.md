@@ -563,7 +563,7 @@ We can redefine `sum` and `product` as follows:
 
 ```scheme
 (define (sum-of-squares-of-primes a b)
-  (filtered-accumulate prime? + 0 identity a inc b))
+  (filtered-accumulate prime? + 0 square a inc b))
 ```
 
 **b.**
@@ -588,13 +588,122 @@ The interpreter raises an error, as we are asking it to evaluate `(2 2)` (from `
 
 ### Exercise 1.35
 
+$$
+\phi \mapsto 1+\frac{1}{\phi} = \frac{3+\sqrt{5}}{1+\sqrt{5}} = \frac{3+\sqrt{5}}{1+\sqrt{5}}\cdot\frac{1-\sqrt{5}}{1-\sqrt{5}} = \frac{-2-2\sqrt{5}}{-4} = \phi
+$$
+
+```scheme
+> (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0)
+1.6180327868852458
+```
+
 ### Exercise 1.36
+
+```scheme
+> (fixed-point (lambda (x) (/ (log 1000) (log x))) 4.0)
+4.0
+4.9828921423310435
+4.301189432497896
+4.734933901055578
+4.442378437719526
+4.632377941509958
+4.505830646780212
+4.588735606875766
+4.533824356566501
+4.56993352418142
+4.546075272637246
+4.561789745175654
+4.55141783665413
+4.5582542120702625
+4.553744140202578
+4.556717747893265
+4.554756404545319
+4.5560497413912975
+4.5551967522618035
+4.555759257615811
+4.555388284933278
+4.555632929754932
+4.555471588998784
+4.555577989320218
+4.555507819903776
+4.555554095154945
+4.555523577416557
+4.555543703263474
+4.555530430629037
+4.555539183677709
+;; 30 steps
+> (fixed-point (lambda (x) (average x (/ (log 1000) (log x)))) 4.0)
+4.0
+4.491446071165521
+4.544974650975552
+4.553746974742814
+4.555231425802502
+4.555483906560562
+4.5555268862194875
+4.5555342036887705
+;; 8 steps
+```
 
 ### Exercise 1.37
 
+Recursive version:
+
+```schem
+(define (cont-frac n d k)
+  (define (rec j)
+    (if (= j k)
+        (/ (n k) (d k))
+        (/ (n j) (+ (d j) (rec (+ j 1))))))
+  (rec 1))
+```
+
+Iterative version:
+
+```scheme
+(define (cont-frac n d k)
+  (define (iter j result)
+    (if (= j 0)
+        result
+        (iter (- j 1) (/ (n j) (+ (d j) result)))))
+  (iter (- k 1) (/ (n k) (d k))))
+```
+
+`k` has to be at least 11.
+
+```scheme
+> (cont-frac (lambda (i) 1.0)
+             (lambda (i) 1.0)
+             10)
+0.6179775280898876
+> (cont-frac (lambda (i) 1.0)
+             (lambda (i) 1.0)
+             11)
+0.6180555555555556
+```
+
 ### Exercise 1.38
 
+```scheme
+(define (e-approx k)
+  (+ 2 (cont-frac (lambda (i) 1.0)
+                  (lambda (i)
+                    (if (= (remainder i 3) 2)
+                        (* 2 (+ (quotient i 3) 1))
+                        1))
+                  k)))
+```
+
 ### Exercise 1.39
+
+```scheme
+(define (tan-cf x k)
+  (if (zero? x)
+      0.0
+      (/ (cont-frac (lambda (i) (- (* x x)))
+                    (lambda (i) (- (* 2 i) 1))
+                    k)
+         (- x))))
+```
 
 ### Exercise 1.40
 
