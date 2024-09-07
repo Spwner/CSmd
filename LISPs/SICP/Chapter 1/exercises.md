@@ -707,14 +707,82 @@ Iterative version:
 
 ### Exercise 1.40
 
+```scheme
+(define (cubic a b c)
+  (lambda (x) (+ (* x x x) (* a x x) (* b x) c)))
+```
+
 ### Exercise 1.41
+
+```scheme
+(define (double f)
+  (lambda (x) (f (f x))))
+```
+
+```scheme
+> (((double (double double)) inc) 5)
+21
+```
 
 ### Exercise 1.42
 
+```scheme
+(define (compose f g)
+  (lambda (x) (f (g x))))
+```
+
 ### Exercise 1.43
+
+```scheme
+(define (repeated f n)
+  (if (> n 0)
+      (compose f (repeated f (- n 1)))
+      identity))
+```
 
 ### Exercise 1.44
 
+```scheme
+(define (smooth f)
+  (lambda (x) (/ (+ (f (- x dx)) (f x) (f (+ x dx))) 3)))
+(define (n-fold-smooth f n)
+  ((repeated smooth n) f))
+```
+
 ### Exercise 1.45
 
+From experimentation, we can see that, in order for the fixed-point search to converge when computing the $n^\text{th}$ root, `average-damp` has to be applied at least $\lfloor \log_2 n \rfloor$ times.
+
+```scheme
+(define (nth-root x n)
+  (let ((least-repeats (inexact->exact (floor (/ (log n)
+                                                 (log 2))))))
+    (fixed-point-of-transform (lambda (y) (/ x (expt y (- n 1))))
+                              (repeated average-damp least-repeats)
+                              1.0)))
+```
+
 ### Exercise 1.46
+
+```scheme
+(define (iterative-improve good-enough? improve)
+  (define (try guess)
+    (if (good-enough? guess)
+        guess
+        (try (improve guess))))
+  try)
+```
+
+```scheme
+(define (delta-close? x y delta)
+  (< (abs (- x y)) delta))
+(define (sqrt x)
+  ((iterative-improve (lambda (guess)
+                        (delta-close? (square guess) x 0.001))
+                      (lambda (guess)
+                        (average guess (/ x guess)))) 1.0))
+(define (fixed-point f first-guess)
+  (f ((iterative-improve (lambda (guess)
+                           (delta-close? guess (f guess) 0.00001))
+                         f) first-guess)))
+```
