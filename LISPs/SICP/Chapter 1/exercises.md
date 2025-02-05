@@ -648,7 +648,7 @@ $$
 
 Recursive version:
 
-```schem
+```scheme
 (define (cont-frac n d k)
   (define (rec j)
     (if (= j k)

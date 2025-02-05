@@ -151,3 +151,12 @@ Addition can be defined as follows:
 (define (add-church n m)
   (lambda (f) (lambda (x) ((m f) ((n f) x)))))
 ```
+
+As a bonus, here's multiplication:
+
+```scheme
+(define (mult-church n m)
+  (lambda (f) (lambda (x) ((m (n f)) x))))
+```
+
+### Exercise 2.7
